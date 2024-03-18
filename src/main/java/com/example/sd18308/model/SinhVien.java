@@ -18,4 +18,8 @@ public class SinhVien {
     private String diaChi;
 
     private Integer tuoi;
+
+    private String tenLop;
+
+    private String gioiTinh;
 }
