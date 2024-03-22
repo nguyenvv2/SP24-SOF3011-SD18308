@@ -1,5 +1,6 @@
 package com.example.sd18308.connect;
 
+import com.example.sd18308.model.DanhMuc;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -23,7 +24,7 @@ public class HibernateUtils {
         properties.put(Environment.SHOW_SQL, "true");
 
         conf.setProperties(properties);
-//        conf.addAnnotatedClass(DanhMuc.class);
+        conf.addAnnotatedClass(DanhMuc.class);
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);
