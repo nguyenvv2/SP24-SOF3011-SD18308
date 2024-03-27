@@ -3,6 +3,7 @@ package com.example.sd18308.repository;
 import com.example.sd18308.connect.HibernateUtils;
 import com.example.sd18308.model.DanhMuc;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 
@@ -19,10 +20,16 @@ public class DanhMucRepository {
         return list;
     }
 
-    public static void main(String[] args) {
-        ArrayList<DanhMuc> list = new DanhMucRepository().getList();
-        for (DanhMuc danhMuc : list) {
-            System.out.println(danhMuc.toString());
+    public void add(DanhMuc danhMuc) {
+        session = HibernateUtils.getFACTORY().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.saveOrUpdate(danhMuc);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
         }
+        session.close();
     }
 }
